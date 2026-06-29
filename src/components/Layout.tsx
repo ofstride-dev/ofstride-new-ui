@@ -1,6 +1,23 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleCalculatorScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/#roi-calculator');
+      setTimeout(() => {
+        const el = document.getElementById('roi-calculator');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 150);
+    } else {
+      const el = document.getElementById('roi-calculator');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="site-shell">
       <header className="site-header">
@@ -11,15 +28,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#5D7CC1] mt-0.5">Services LLP</span>
             </span>
           </Link>
-          <nav className="flex gap-6 text-sm font-medium text-slate-600">
+          <nav className="flex gap-6 text-sm font-medium text-slate-600 items-center">
             <Link to="/" className="transition hover:text-[#00209F]">
               Home
             </Link>
-            <a href="/#roi-calculator" className="transition hover:text-[#00209F]">
+            <a href="#roi-calculator" onClick={handleCalculatorScroll} className="transition hover:text-[#00209F]">
               ROI Calculator
             </a>
-            <Link to="/contact" className="transition hover:text-[#00209F]">
-              Contact
+            <Link to="/contact" className="btn-primary px-4 py-1.5 rounded-lg text-xs font-bold text-white tracking-wide transition shadow-sm">
+              Get Started
             </Link>
           </nav>
         </div>
@@ -27,7 +44,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       
       <main style={{ flexGrow: 1 }}>{children}</main>
 
-      {/* Industrial Grade Corporate Footer */}
       <footer className="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-900 mt-20">
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
