@@ -23,6 +23,15 @@ body {
   min-height: 100vh;
   background: #f8fafc;
   color: #0f172a;
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 2rem;
 }
 
 a {
