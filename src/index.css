@@ -1,113 +1,23 @@
-:root {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #f8fafc;
-  background-color: #030712; /* Premium dark background baseline */
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Glassmorphic input styles to overhaul the flat input fields */
+.aintric-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(169, 185, 226, 0.15) !important;
+  border-radius: 0.75rem !important;
+  padding: 0.85rem 1rem !important;
+  color: #ffffff !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.aintric-input:focus {
+  outline: none !important;
+  border-color: #5D7CC1 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(93, 124, 193, 0.25) !important;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  /* Glowing multi-layer gradients mimicking aintric.com matching your corporate blue palette */
-  background: 
-    radial-gradient(circle at 10% 15%, rgba(0, 32, 159, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 85% 70%, rgba(93, 124, 193, 0.12) 0%, transparent 45%),
-    #030712;
-  color: #f8fafc;
-  overflow-x: hidden;
-}
-
-section {
-  scroll-margin-top: 6rem;
-}
-
-/* Glassmorphic Card structures matching aintric.com */
-.aintric-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(169, 185, 226, 0.1);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 1.25rem;
-  padding: 2rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.aintric-card:hover {
-  border-color: rgba(93, 124, 193, 0.4);
-  box-shadow: 0 20px 40px rgba(0, 32, 159, 0.25);
-  transform: translateY(-2px);
-}
-
-/* Premium Navigation Frame Layout */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-b: 1px solid rgba(169, 185, 226, 0.08);
-  background: rgba(3, 7, 18, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* Interactive CTA Buttons matching aintric.com interactive buttons */
-.btn-aintric-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #00209F 0%, #3b5cb4 100%);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.02em;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(169, 185, 226, 0.2);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 32, 159, 0.4);
-}
-
-.btn-aintric-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 32, 159, 0.6);
-  background: linear-gradient(135deg, #00197d 0%, #4c6ec7 100%);
-}
-
-.btn-aintric-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  color: #f8fafc;
-  font-weight: 500;
-  font-size: 0.875rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(169, 185, 226, 0.15);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-aintric-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(93, 124, 193, 0.5);
-}
-
-/* Typography Gradient Matching aintric.com text mask fields */
+/* Text Mask Masking To match Gradient Typography Heading Layers */
 .aintric-gradient-text {
   background: linear-gradient(135deg, #ffffff 30%, #A9B9E2 100%);
   -webkit-background-clip: text;
@@ -115,26 +25,51 @@ section {
   background-clip: text;
 }
 
-.container-page {
-  width: min(1200px, calc(100% - 3rem));
-  margin: 0 auto;
-}
-
-/* Custom Custom Input Triggers For WebForms */
-.aintric-input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(169, 185, 226, 0.15);
-  border-radius: 0.75rem;
-  padding: 0.85rem 1rem;
+/* Micro-interaction button shadows mirroring the look of aintric.com */
+.btn-aintric-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00209F 0%, #3b5cb4 100%);
   color: #ffffff;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(169, 185, 226, 0.25);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(0, 32, 159, 0.4);
 }
 
-.aintric-input:focus {
-  outline: none;
-  border-color: #5D7CC1;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 0 3px rgba(93, 124, 193, 0.2);
+.btn-aintric-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(0, 32, 159, 0.65);
+  border-color: rgba(169, 185, 226, 0.4);
+  background: linear-gradient(135deg, #00197d 0%, #4c6ec7 100%);
+}
+
+.btn-aintric-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(169, 185, 226, 0.15);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-aintric-secondary:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(93, 124, 193, 0.5);
+  transform: translateY(-1px);
 }
