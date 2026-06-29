@@ -4,28 +4,30 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleCalculatorScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  // Solves the broken cross-route jump behavior
+  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, elementId: string) => {
     e.preventDefault();
     if (location.pathname !== '/') {
-      navigate('/#roi-calculator');
+      navigate('/');
+      // Allow the router to complete mounting the Home view before calculating element offsets
       setTimeout(() => {
-        const el = document.getElementById('roi-calculator');
+        const el = document.getElementById(elementId);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 180);
+      }, 200);
     } else {
-      const el = document.getElementById('roi-calculator');
+      const el = document.getElementById(elementId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="flex flex-col min-h-screen justify-between">
-      {/* Premium Navigation Strip */}
+    <div className="flex flex-col min-h-screen bg-[#030712] text-[#f8fafc]">
+      {/* Sticky Header Frame */}
       <header className="site-header">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link to="/" className="flex items-center gap-2 text-white">
+          <Link to="/" className="flex items-center gap-2 text-white group">
             <span className="flex flex-col leading-none select-none">
-              <span className="text-[1.25rem] font-black tracking-wider text-[#ffffff] italic">
+              <span className="text-[1.25rem] font-black tracking-wider text-white italic group-hover:text-[#5D7CC1] transition-colors">
                 OFSTRIDE
               </span>
               <span className="text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#A9B9E2] mt-0.5">
@@ -37,21 +39,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <Link to="/" className="text-slate-300 transition hover:text-white">
               Home
             </Link>
-            <a href="#roi-calculator" onClick={handleCalculatorScroll} className="text-slate-300 transition hover:text-white">
+            <a 
+              href="#services" 
+              onClick={(e) => handleScrollToSection(e, 'services')} 
+              className="text-slate-300 transition hover:text-white"
+            >
+              Services
+            </a>
+            <a 
+              href="#roi-calculator" 
+              onClick={(e) => handleScrollToSection(e, 'roi-calculator')} 
+              className="text-slate-300 transition hover:text-white"
+            >
               ROI Calculator
             </a>
-            <Link to="/contact" className="btn-aintric-primary py-2 px-4 text-xs font-bold">
+            <Link to="/contact" className="btn-aintric-primary py-2 px-4 text-xs font-bold uppercase tracking-wider">
               Get Started
             </Link>
           </nav>
         </div>
       </header>
       
-      {/* Content Rendering Grid */}
+      {/* Dynamic Shell Main Container */}
       <main className="flex-grow">{children}</main>
 
-      {/* Modern High-Fidelity Deep Footer */}
-      <footer className="bg-slate-950 border-t border-slate-900 text-slate-400 pt-16 pb-12 mt-24">
+      {/* Premium Multi-Column Dark Footer Grid */}
+      <footer className="bg-slate-950 border-t border-slate-900/60 text-slate-400 pt-16 pb-12 mt-24">
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
             <div className="flex flex-col">
@@ -59,25 +72,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <span className="text-[0.65rem] font-bold tracking-[0.25em] text-[#5D7CC1] uppercase mt-0.5">SERVICES LLP</span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Industrial-grade AI integrations, deterministic agentic operations pipelines, and computing architecture customized precisely for small businesses and high-growth MSMEs.
+              Industrial-grade AI automation workflows, deterministic agent logic architectures, and processing engineering built for scaling growing business margins.
             </p>
           </div>
           
           <div>
             <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Core Focus Elements</h4>
             <ul className="space-y-2.5 text-xs">
-              <li><Link to="/" className="hover:text-white transition-colors">Agentic Logic Routing</Link></li>
-              <li><Link to="/" className="hover:text-white transition-colors">Custom LLM Training</Link></li>
-              <li><Link to="/" className="hover:text-white transition-colors">Small Business Scalers</Link></li>
+              <li><a href="#services" onClick={(e) => handleScrollToSection(e, 'services')} className="hover:text-white transition-colors">Agentic Operations</a></li>
+              <li><a href="#services" onClick={(e) => handleScrollToSection(e, 'services')} className="hover:text-white transition-colors">LLM Integrations</a></li>
+              <li><a href="#roi-calculator" onClick={(e) => handleScrollToSection(e, 'roi-calculator')} className="hover:text-white transition-colors">ROI Quantifiers</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Operational Assurance</h4>
-            <ul className="space-y-2.5 text-xs text-slate-500">
-              <li>Data Integrity Protocol</li>
-              <li>Privacy Matrix Layout</li>
-              <li>SOC 2 Framework Logs</li>
+            <ul className="space-y-2.5 text-xs text-slate-600">
+              <li>Data Isolation Protocol</li>
+              <li>Privacy Matrix System</li>
+              <li>SOC 2 Mapping Logs</li>
             </ul>
           </div>
 
@@ -90,7 +103,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="mx-auto max-w-6xl px-6 mt-12 pt-8 border-t border-slate-900 text-center text-xs text-slate-600">
-          &copy; {new Date().getFullYear()} Ofstride Services LLP. All Rights Reserved. Engineered for enterprise precision.
+          &copy; {new Date().getFullYear()} Ofstride Services LLP. All Rights Reserved. Built for production precision.
         </div>
       </footer>
     </div>
