@@ -20,195 +20,159 @@ interface ConsultFormProps {
 }
 
 export function ConsultForm({
-  title = 'Consult with an Ofstride expert',
-  description = 'Share a few details and our team will follow up within one business day.',
   submitLabel = 'Request a consult',
   compact = false,
 }: ConsultFormProps) {
-  const { status, submitForm, reset } = useFormSubmit((import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env?.VITE_WEB3FORMS_KEY ?? '');
+  const { status, submitForm } = useFormSubmit(
+    (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env?.VITE_WEB3FORMS_KEY ?? ''
+  );
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
 
   const validateField = (name: keyof FormData, value: string) => {
-    const result = formSchema.shape[name].safeParse(value);
-    return result.success ? undefined : result.error.errors[0].message;
-  };
-
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setTouched(prev => ({ ...prev, [name]: true }));
-    const error = validateField(name as keyof FormData, value);
-    setFieldErrors(prev => ({ ...prev, [name]: error }));
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    if (touched[name as keyof FormData]) {
-      const error = validateField(name as keyof FormData, value);
-      setFieldErrors(prev => ({ ...prev, [name]: error }));
-    }
+    const fieldSchema = formSchema.shape[name];
+    const result = fieldSchema.safeParse(value);
+    setFieldErrors((prev) => ({
+      ...prev,
+      [name]: result.success ? undefined : result.error.errors[0].message,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    
-    const data: FormData = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      company: formData.get('company') as string,
-      location: (formData.get('location') as string) || undefined,
-      message: formData.get('message') as string,
-    };
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries()) as unknown as FormData;
 
     const result = formSchema.safeParse(data);
     if (!result.success) {
       const errors: Partial<Record<keyof FormData, string>> = {};
-      result.error.errors.forEach(err => {
-        const path = err.path[0] as keyof FormData;
-        errors[path] = err.message;
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) errors[err.path[0] as keyof FormData] = err.message;
       });
       setFieldErrors(errors);
-      setTouched({ name: true, email: true, company: true, message: true });
+      const allTouched: Partial<Record<keyof FormData, boolean>> = {};
+      Object.keys(formSchema.shape).forEach((key) => {
+        allTouched[key as keyof FormData] = true;
+      });
+      setTouched(allTouched);
       return;
     }
 
     await submitForm(data);
-    if (status !== 'error') {
-      form.reset();
-      setFieldErrors({});
-      setTouched({});
-    }
   };
 
-  if (status === 'success') {
-    return (
-      <div className="card text-center py-12">
-        <div className="text-4xl mb-4" role="img" aria-label="Success">✅</div>
-        <h3 className="text-xl font-semibold text-slate-900">Message sent successfully!</h3>
-        <p className="mt-2 text-slate-600">We'll be in touch within 24 hours.</p>
-        <button 
-          onClick={reset}
-          className="mt-6 text-sm text-primary-600 hover:text-primary-700 underline"
-        >
-          Send another message
-        </button>
-      </div>
-    );
-  }
-
-  const inputClass = (name: keyof FormData) => 
-    `input ${fieldErrors[name] && touched[name] ? 'border-red-400 focus:border-red-400 focus:ring-red-100' : ''}`;
-
   return (
-    <div className="card">
-      <div className={compact ? 'space-y-1' : 'space-y-2'}>
-        <h3 className="text-xl font-semibold text-slate-900">{title}</h3>
-        <p className="text-sm text-slate-600">{description}</p>
-      </div>
-      <form className="mt-6 grid gap-4" onSubmit={handleSubmit} noValidate>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <input 
-              className={inputClass('name')} 
-              name="name" 
-              placeholder="Full name *" 
-              required 
-              onBlur={handleBlur}
-              onChange={handleChange}
-              aria-invalid={!!fieldErrors.name}
-              aria-describedby={fieldErrors.name ? 'name-error' : undefined}
-            />
-            {fieldErrors.name && touched.name && (
-              <p id="name-error" className="mt-1 text-xs text-red-500">{fieldErrors.name}</p>
-            )}
-          </div>
-          <div>
-            <input 
-              className={inputClass('email')} 
-              name="email" 
-              placeholder="Work email *" 
-              type="email" 
-              required 
-              onBlur={handleBlur}
-              onChange={handleChange}
-              aria-invalid={!!fieldErrors.email}
-              aria-describedby={fieldErrors.email ? 'email-error' : undefined}
-            />
-            {fieldErrors.email && touched.email && (
-              <p id="email-error" className="mt-1 text-xs text-red-500">{fieldErrors.email}</p>
-            )}
-          </div>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div>
-            <input 
-              className={inputClass('company')} 
-              name="company" 
-              placeholder="Company *" 
-              required 
-              onBlur={handleBlur}
-              onChange={handleChange}
-              aria-invalid={!!fieldErrors.company}
-              aria-describedby={fieldErrors.company ? 'company-error' : undefined}
-            />
-            {fieldErrors.company && touched.company && (
-              <p id="company-error" className="mt-1 text-xs text-red-500">{fieldErrors.company}</p>
-            )}
-          </div>
-          <input 
-            className="input" 
-            name="location" 
-            placeholder="Location (optional)" 
-            onBlur={handleBlur}
-            onChange={handleChange}
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <textarea
-            className={`input min-h-[120px] ${fieldErrors.message && touched.message ? 'border-red-400 focus:border-red-400 focus:ring-red-100' : ''}`}
-            name="message"
-            placeholder="Tell us about your requirement *"
-            required
-            onBlur={handleBlur}
-            onChange={handleChange}
-            aria-invalid={!!fieldErrors.message}
-            aria-describedby={fieldErrors.message ? 'message-error' : undefined}
+          <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="John Doe"
+            className="aintric-input"
+            onBlur={(e) => {
+              setTouched(p => ({ ...p, name: true }));
+              validateField('name', e.target.value);
+            }}
           />
-          {fieldErrors.message && touched.message && (
-            <p id="message-error" className="mt-1 text-xs text-red-500">{fieldErrors.message}</p>
+          {fieldErrors.name && touched.name && (
+            <p className="mt-1 text-xs text-red-400 font-medium">{fieldErrors.name}</p>
           )}
         </div>
-        
-        <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
-        
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-slate-500">We typically respond within 24 hours.</p>
-          <button 
-            type="submit" 
-            className="btn btn-primary"
-            disabled={status === 'submitting'}
-            aria-busy={status === 'submitting'}
-          >
-            {status === 'submitting' ? (
-              <span className="flex items-center gap-2">
-                <span className="h-4 w-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Sending...
-              </span>
-            ) : submitLabel}
-          </button>
+        <div>
+          <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Corporate Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="john@company.com"
+            className="aintric-input"
+            onBlur={(e) => {
+              setTouched(p => ({ ...p, email: true }));
+              validateField('email', e.target.value);
+            }}
+          />
+          {fieldErrors.email && touched.email && (
+            <p className="mt-1 text-xs text-red-400 font-medium">{fieldErrors.email}</p>
+          )}
         </div>
-        
-        {status === 'error' && (
-          <div className="rounded-lg bg-red-50 border border-red-200 p-3">
-            <p className="text-sm text-red-600">
-              Something went wrong. Please try again or email us directly at{' '}
-              <a href="mailto:info@ofstride.com" className="underline">info@ofstride.com</a>
-            </p>
-          </div>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Company Name</label>
+          <input
+            type="text"
+            name="company"
+            placeholder="Acme Corp"
+            className="aintric-input"
+            onBlur={(e) => {
+              setTouched(p => ({ ...p, company: true }));
+              validateField('company', e.target.value);
+            }}
+          />
+          {fieldErrors.company && touched.company && (
+            <p className="mt-1 text-xs text-red-400 font-medium">{fieldErrors.company}</p>
+          )}
+        </div>
+        <div>
+          <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Location (Optional)</label>
+          <input
+            type="text"
+            name="location"
+            placeholder="e.g., Bengaluru, India"
+            className="aintric-input"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Operational Scope & Objectives</label>
+        <textarea
+          name="message"
+          rows={compact ? 3 : 5}
+          placeholder="Describe your current processes, manual bottlenecks, and automation goals..."
+          className="aintric-input"
+          style={{ resize: 'vertical' }}
+          onBlur={(e) => {
+            setTouched(p => ({ ...p, message: true }));
+            validateField('message', e.target.value);
+          }}
+        />
+        {fieldErrors.message && touched.message && (
+          <p className="mt-1 text-xs text-red-400 font-medium">{fieldErrors.message}</p>
         )}
-      </form>
-    </div>
+      </div>
+
+      <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} aria-hidden="true" />
+
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between pt-2">
+        <p className="text-xs text-slate-400 font-medium">⚡ Responding within 1 Business Day SLA.</p>
+        <button
+          type="submit"
+          className="btn-aintric-primary px-6 py-3 text-xs uppercase tracking-wider font-bold"
+          disabled={status === 'submitting'}
+        >
+          {status === 'submitting' ? (
+            <span className="flex items-center gap-2">
+              <span className="h-3.5 w-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              Routing...
+            </span>
+          ) : submitLabel}
+        </button>
+      </div>
+
+      {status === 'success' && (
+        <div className="rounded-xl bg-emerald-950/40 border border-emerald-500/30 p-4 mt-4 text-center">
+          <p className="text-sm text-emerald-400 font-semibold">Transmission successful! Our solutions engineering team will follow up via email shortly.</p>
+        </div>
+      )}
+
+      {status === 'error' && (
+        <div className="rounded-xl bg-red-950/40 border border-red-500/30 p-4 mt-4 text-center">
+          <p className="text-sm text-red-400 font-semibold">Transmission interrupted. Please check your network or reach out directly.</p>
+        </div>
+      )}
+    </form>
   );
 }
