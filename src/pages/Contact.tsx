@@ -9,30 +9,32 @@ export function Contact() {
   return (
     <>
       <SEO 
-        title="Contact Us — Book a Free Consultation"
-        description="Book a 30-minute discovery call or send us a message. We typically respond within 24 hours."
+        title="Contact Engineering Operations — Ofstride Services LLP"
+        description="Book an implementation call or file an architecture review directly with our technical delivery leads."
         canonical="/contact"
       />
       <main>
-        <section className="bg-slate-950 py-16 text-white">
-          <div className="container-page">
+        {/* Header Block */}
+        <section className="bg-slate-950 py-16 text-white border-b border-slate-900">
+          <div className="container-page px-6">
             <div className="max-w-3xl">
-              <p className="eyebrow text-primary-400">
-                Start a Conversation
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#5D7CC1]">
+                System Intake
               </p>
-              <h1 className="mt-3 text-4xl font-bold gradient-text">Contact Us</h1>
-              <p className="mt-4 text-lg text-slate-300">
-                Book a discovery call directly or send a message. Both paths are live and ready.
+              <h1 className="mt-3 text-4xl font-black tracking-tight text-white">Connect with an Architect</h1>
+              <p className="mt-3 text-base text-slate-400 max-w-xl leading-relaxed">
+                Schedule an live system mapping review with an implementation advisor or send your operational documentation securely.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-slate-400">
-                <a href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 hover:text-white transition">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-slate-300">
+                <a href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2 hover:border-[#5D7CC1] transition-colors">
+                  <svg className="h-3.5 w-3.5 text-[#5D7CC1]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   {siteContent.brand.phone}
                 </a>
-                <a href={`mailto:${siteContent.brand.email}`} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 hover:text-white transition">
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <a href={`mailto:${siteContent.brand.email}`} className="inline-flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-900/50 px-3 py-2 hover:border-[#5D7CC1] transition-colors">
+                  <svg className="h-3.5 w-3.5 text-[#5D7CC1]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   {siteContent.brand.email}
@@ -42,35 +44,38 @@ export function Contact() {
           </div>
         </section>
 
-        <section className="py-16">
-          <div className="container-page max-w-6xl">
+        {/* Channels Selection Layout */}
+        <section className="py-16 bg-slate-50">
+          <div className="container-page max-w-6xl px-6">
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="premium-card p-6 sm:p-8">
+              {/* Calendly Interactive Interface */}
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-6 md:p-8">
                 <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary-600">Calendar</p>
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#5D7CC1]">Direct Calendar Link</p>
                 </div>
-                <h2 className="mt-4 text-xl font-semibold text-slate-900">Book a 30-min discovery call</h2>
-                <p className="mt-2 text-sm text-slate-600">
-                  Pick a time that works for you. No back-and-forth emails needed.
+                <h2 className="mt-3 text-lg font-bold text-slate-900">Book Implementation Sync</h2>
+                <p className="mt-1 text-xs text-slate-500">
+                  Select a live 30-minute block directly on our operations dashboard.
                 </p>
-                <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
-                  <CalendlyEmbed url={calendlyUrl} height={650} />
+                <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                  <CalendlyEmbed url={calendlyUrl} height={600} />
                 </div>
               </div>
               
-              <div className="premium-card p-6 sm:p-8">
+              {/* Form Communication Channel */}
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-6 md:p-8">
                 <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-primary-600" />
-                  <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary-600">Message</p>
+                  <span className="h-2 w-2 rounded-full bg-[#00209F]" />
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#5D7CC1]">Encrypted Intake Form</p>
                 </div>
-                <h2 className="mt-4 text-xl font-semibold text-slate-900">Or send a message</h2>
-                <p className="mt-2 text-sm text-slate-600">
-                  Share your requirements and we'll get back to you with next steps.
+                <h2 className="mt-3 text-lg font-bold text-slate-900">Transmit Requirements</h2>
+                <p className="mt-1 text-xs text-slate-500">
+                  Provide overview profiles and specific target tasks requiring workflow model integration.
                 </p>
-                <div className="mt-6">
+                <div className="mt-6 text-sm text-slate-700">
                   <ConsultForm 
-                    submitLabel="Send message" 
+                    submitLabel="Initialize Inquiry Setup" 
                     compact 
                     description=""
                   />
@@ -80,23 +85,24 @@ export function Contact() {
           </div>
         </section>
 
-        <section className="bg-slate-50 py-12">
-          <div className="container-page">
+        {/* Corporate Assurance Badges */}
+        <section className="bg-white py-12 border-t border-slate-200">
+          <div className="container-page px-6">
             <div className="grid gap-6 md:grid-cols-3 text-center">
-              <div className="card">
-                <div className="text-3xl mb-2" role="img" aria-label="Clock">⏱️</div>
-                <p className="font-semibold">&lt; 24h Response</p>
-                <p className="text-sm text-slate-500 mt-1">We reply to every inquiry within one business day.</p>
+              <div className="p-4 bg-slate-50 border border-slate-200/60 rounded-xl">
+                <div className="text-2xl mb-1">⏱️</div>
+                <p className="font-bold text-slate-900 text-sm">Industrial Response</p>
+                <p className="text-xs text-slate-500 mt-1">All engineering sync requests verified within 24 operational hours.</p>
               </div>
-              <div className="card">
-                <div className="text-3xl mb-2" role="img" aria-label="Shield">🛡️</div>
-                <p className="font-semibold">No Spam, Ever</p>
-                <p className="text-sm text-slate-500 mt-1">Your information is confidential and never shared.</p>
+              <div className="p-4 bg-slate-50 border border-slate-200/60 rounded-xl">
+                <div className="text-2xl mb-1">🛡️</div>
+                <p className="font-bold text-slate-900 text-sm">NDAs Assured</p>
+                <p className="text-xs text-slate-500 mt-1">Intellectual architecture data maps remain secure under legal protocols.</p>
               </div>
-              <div className="card">
-                <div className="text-3xl mb-2" role="img" aria-label="People">🤝</div>
-                <p className="font-semibold">Free First Consultation</p>
-                <p className="text-sm text-slate-500 mt-1">No obligation. We'll map your needs to the right solution.</p>
+              <div className="p-4 bg-slate-50 border border-slate-200/60 rounded-xl">
+                <div className="text-2xl mb-1">💼</div>
+                <p className="font-bold text-slate-900 text-sm">Architecture Scoping</p>
+                <p className="text-xs text-slate-500 mt-1">First diagnostic system assessment occurs completely complimentary.</p>
               </div>
             </div>
           </div>
