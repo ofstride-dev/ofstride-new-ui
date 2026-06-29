@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { HeroSection } from "../sections/HeroSection";
 import { ServicesSection } from "../sections/ServicesSection";
@@ -8,7 +9,9 @@ import { ProcessSection } from "../sections/ProcessSection";
 import { AnalyticsSection } from "../sections/AnalyticsSection";
 
 export function Home() {
-  // ROI Calculation States
+  const navigate = useNavigate();
+
+  // ROI Engine Calculator State
   const [hoursSpent, setHoursSpent] = useState<number>(160);
   const [laborCost, setLaborCost] = useState<number>(35);
   const [efficiency, setEfficiency] = useState<number>(45);
@@ -22,6 +25,19 @@ export function Home() {
     };
   }, [hoursSpent, laborCost, efficiency]);
 
+  // Unified Navigation Actions matching interactive design patterns
+  const handleGetStarted = () => {
+    navigate('/contact');
+  };
+
+  const handleExploreServices = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const element = document.getElementById('services-framework');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <SEO 
@@ -30,11 +46,17 @@ export function Home() {
         canonical="/"
       />
       <main>
+        {/* Main Hero Layer */}
         <HeroSection />
-        <ServicesSection />
+        
+        {/* Target wrapping anchor to match Explore Services pathway hook */}
+        <div id="services-framework">
+          <ServicesSection />
+        </div>
+        
         <PainPointSection />
         
-        {/* Built-in Small Business Tool: ROI Automation Engine */}
+        {/* Interactive Small Business ROI Tool Section */}
         <section id="roi-calculator" className="py-20 bg-slate-100 border-t border-b border-slate-200/60">
           <div className="container-page max-w-4xl mx-auto px-4">
             <div className="text-center mb-10">
@@ -42,14 +64,14 @@ export function Home() {
                 ROI Quantifier
               </span>
               <h2 className="text-3xl font-bold text-slate-900 tracking-tight mt-3">Calculate Your Agentic Automation Value</h2>
-              <p className="text-slate-500 text-sm mt-1">Fine tune the inputs below to calculate your projected capital conservation metric.</p>
+              <p className="text-slate-500 text-sm mt-1">Fine-tune variables to evaluate live operational capital conservation projections.</p>
             </div>
 
             <div className="bg-white rounded-2xl p-6 md:p-8 shadow-xl border border-slate-200 grid md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div>
                   <div className="flex justify-between text-xs font-semibold text-slate-700 mb-2">
-                    <span>Monthly Labor Task Hours</span>
+                    <span>Monthly Manual Operational Hours</span>
                     <span className="text-[#00209F] font-bold">{hoursSpent} Hours</span>
                   </div>
                   <input
@@ -65,7 +87,7 @@ export function Home() {
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold text-slate-700 mb-2">
-                    <span>Hourly Resource Labor Cost</span>
+                    <span>Hourly Labor Rate Cost</span>
                     <span className="text-[#00209F] font-bold">${laborCost}/hr</span>
                   </div>
                   <input
@@ -81,7 +103,7 @@ export function Home() {
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold text-slate-700 mb-2">
-                    <span>Estimated Efficiency Yield</span>
+                    <span>Target Efficiency Gain</span>
                     <span className="text-[#00209F] font-bold">{efficiency}% Gain</span>
                   </div>
                   <input
@@ -107,12 +129,18 @@ export function Home() {
                     <p className="text-4xl font-black text-emerald-600 mt-1">${calculatedSavings.annual.toLocaleString()}</p>
                   </div>
                 </div>
-                <p className="text-[10px] text-slate-400 italic mt-4">*Calculated metrics map down cleanly to typical custom workflow integrations.</p>
+                <button 
+                  onClick={handleGetStarted}
+                  className="btn btn-primary w-full mt-4 text-center text-xs font-bold py-3 uppercase tracking-wider"
+                >
+                  Deploy This Plan
+                </button>
               </div>
             </div>
           </div>
         </section>
 
+        {/* Dynamic Action Banner Area */}
         <section className="cta-band py-16 text-white">
           <div className="container-page grid gap-8 lg:grid-cols-[1.15fr,0.85fr] items-center">
             <div className="max-w-2xl">
@@ -124,12 +152,12 @@ export function Home() {
                 Let us map your operations to a high-fidelity AI roadmap — sharp, deterministic, and built for real business efficiency.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <a className="btn bg-white text-[#00209F] hover:bg-slate-100" href="/contact">
+                <button className="btn bg-white text-[#00209F] hover:bg-slate-100" onClick={handleGetStarted}>
                   Book a Consultation
-                </a>
-                <a className="btn border border-white/30 text-white hover:bg-white/10" href="#services">
-                  Explore Ecosystem
-                </a>
+                </button>
+                <button className="btn border border-white/30 text-white hover:bg-white/10" onClick={handleExploreServices}>
+                  Explore Services
+                </button>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center">
