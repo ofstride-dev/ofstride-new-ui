@@ -1,31 +1,77 @@
-/* Glassmorphic input styles to overhaul the flat input fields */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #f8fafc;
+  background-color: #030712;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  /* Ambient backdrop glows using Ofstride Corporate Blues */
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(0, 32, 159, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(93, 124, 193, 0.12) 0%, transparent 50%),
+    #030712;
+  color: #f8fafc;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism containers matching aintric.com structural components */
+.aintric-card {
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(169, 185, 226, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aintric-card:hover {
+  border-color: rgba(93, 124, 193, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 32, 159, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Adaptive Form Input Control Fields Overrides */
 .aintric-input {
   width: 100%;
   background: rgba(255, 255, 255, 0.02) !important;
-  border: 1px solid rgba(169, 185, 226, 0.15) !important;
+  border: 1px solid rgba(169, 185, 226, 0.12) !important;
   border-radius: 0.75rem !important;
   padding: 0.85rem 1rem !important;
   color: #ffffff !important;
   font-size: 0.9rem !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.2s ease !important;
 }
 
 .aintric-input:focus {
   outline: none !important;
   border-color: #5D7CC1 !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-  box-shadow: 0 0 0 3px rgba(93, 124, 193, 0.25) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 0 0 3px rgba(93, 124, 193, 0.2) !important;
 }
 
-/* Text Mask Masking To match Gradient Typography Heading Layers */
+/* High-contrast Title Gradients */
 .aintric-gradient-text {
-  background: linear-gradient(135deg, #ffffff 30%, #A9B9E2 100%);
+  background: linear-gradient(135deg, #ffffff 40%, #A9B9E2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Micro-interaction button shadows mirroring the look of aintric.com */
+/* Button Micro-interactions and Glow States */
 .btn-aintric-primary {
   display: inline-flex;
   align-items: center;
