@@ -1,9 +1,9 @@
 export function PainPointSection() {
   const painPoints = [
-    'Disconnected HR, finance, and legal workflows',
-    'Reactive decision-making without data visibility',
-    'Compliance gaps that expose risk',
-    'Technical debt blocking digital transformation',
+    'Manual work slowing down sales, support, and operations',
+    'Teams using AI tools inconsistently without clear processes',
+    'Leaders needing faster insights without adding overhead',
+    'Growth initiatives getting stuck in disconnected workflows',
   ];
 
   return (
@@ -11,15 +11,15 @@ export function PainPointSection() {
       <div className="container-page">
         <div className="grid gap-10 lg:grid-cols-2 items-center">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-400">
+            <p className="eyebrow text-primary-400">
               The Challenge
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-tight">
-              The Growth Trap: When "Good Enough" Becomes a Liability
+              The growth trap: when teams are busy but not scaling
             </h2>
             <p className="mt-4 text-slate-400 leading-relaxed">
-              As your business scales, fragmented systems and manual processes create invisible ceilings. 
-              Your best talent gets consumed by maintenance instead of innovation.
+              As your business grows, fragmented workflows and reactive decision-making create drag across the company. 
+              The real opportunity is not more tools — it is better systems that help teams move faster with confidence.
             </p>
             <ul className="mt-6 space-y-3">
               {painPoints.map((item) => (
@@ -40,10 +40,10 @@ export function PainPointSection() {
             <div className="space-y-5">
               {[
                 { label: 'Operational Efficiency', value: 45, color: 'bg-red-400', status: 'Suboptimal' },
-                { label: 'Process Automation', value: 30, color: 'bg-amber-400', status: 'Low' },
-                { label: 'Data-Driven Decisions', value: 85, color: 'bg-emerald-400', status: 'With Ofstride' },
+                { label: 'AI Workflow Adoption', value: 30, color: 'bg-amber-400', status: 'Low' },
+                { label: 'Decision Velocity', value: 85, color: 'bg-emerald-400', status: 'With Ofstride' },
               ].map((bar) => (
-                <div key={bar.label}>
+                <div key={bar.label} className="insight-card">
                   <div className="flex justify-between text-sm mb-2">
                     <span className="text-slate-300">{bar.label}</span>
                     <span className={`font-semibold ${bar.color.replace('bg-', 'text-')}`}>{bar.status}</span>
@@ -58,9 +58,9 @@ export function PainPointSection() {
               ))}
             </div>
             <div className="mt-6 rounded-xl bg-white/5 p-5 text-center border border-white/5">
-              <p className="text-xs text-slate-500 uppercase tracking-wider">Potential Annual Savings</p>
-              <p className="mt-1 text-3xl font-bold gradient-text">₹15L – ₹50L</p>
-              <p className="text-xs text-slate-500 mt-1">For a typical 50-person MSME</p>
+              <p className="text-xs text-slate-500 uppercase tracking-wider">Potential Business Impact</p>
+              <p className="mt-1 text-3xl font-bold gradient-text">20%–40% faster execution</p>
+              <p className="text-xs text-slate-500 mt-1">For operations-heavy teams ready to scale</p>
             </div>
           </div>
         </div>

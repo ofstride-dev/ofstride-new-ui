@@ -19,7 +19,7 @@ export function Home() {
         <ServicesSection />
         <PainPointSection />
         
-        <section className="bg-primary-600 py-16 text-white">
+        <section className="cta-band py-16 text-white">
           <div className="container-page grid gap-8 lg:grid-cols-[1.2fr,0.8fr] items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-200">
@@ -27,8 +27,7 @@ export function Home() {
               </p>
               <h2 className="mt-3 text-3xl font-bold">Ready to Build What's Next?</h2>
               <p className="mt-4 text-primary-100">
-                Talk to an Ofstride architect. We'll map your challenges to a concrete strategy — 
-                no boilerplate, no fluff.
+                Let us map your growth blockers to a practical AI roadmap — clear, measurable, and designed for real business momentum.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a className="btn bg-white text-primary-700 hover:bg-primary-50" href="/contact">
@@ -40,17 +39,17 @@ export function Home() {
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4 text-center">
-              <div className="rounded-xl bg-white/10 p-4">
+              <div className="kpi-card">
                 <p className="text-3xl font-bold">&lt; 24h</p>
-                <p className="text-xs text-primary-200 mt-1">Response Time</p>
+                <p className="mt-1 text-xs text-primary-200">Response Time</p>
               </div>
-              <div className="rounded-xl bg-white/10 p-4">
+              <div className="kpi-card">
                 <p className="text-3xl font-bold">315%</p>
-                <p className="text-xs text-primary-200 mt-1">Avg. Project ROI</p>
+                <p className="mt-1 text-xs text-primary-200">Avg. Project ROI</p>
               </div>
-              <div className="rounded-xl bg-white/10 p-4">
+              <div className="kpi-card">
                 <p className="text-3xl font-bold">65+</p>
-                <p className="text-xs text-primary-200 mt-1">Clients Served</p>
+                <p className="mt-1 text-xs text-primary-200">Clients Served</p>
               </div>
             </div>
           </div>

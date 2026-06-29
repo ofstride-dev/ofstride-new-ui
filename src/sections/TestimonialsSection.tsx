@@ -24,30 +24,29 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="bg-slate-50 py-20">
       <div className="container-page">
-        <div className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-600">
-            Client Stories
-          </p>
-          <h2 className="mt-3 text-3xl font-bold">Don't Take Our Word For It</h2>
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow">Client Stories</p>
+          <h2 className="section-title mt-3">Don't Take Our Word For It</h2>
+          <p className="section-copy mx-auto">A few examples of how our team helps founders and operators turn AI into practical growth and execution gains.</p>
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
           {testimonials.map((t) => (
-            <article key={t.author} className="card flex flex-col">
+            <article key={t.author} className="service-card flex flex-col">
               <div className="flex-1">
-                <svg className="h-8 w-8 text-primary-200 mb-3" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="mb-3 h-8 w-8 text-primary-200" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
-                <p className="text-lg text-slate-700 leading-relaxed">"{t.quote}"</p>
+                <p className="text-lg leading-relaxed text-slate-700">"{t.quote}"</p>
               </div>
-              <div className="mt-6 pt-6 border-t border-slate-100">
+              <div className="mt-6 border-t border-slate-100 pt-6">
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold text-sm">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-sm font-bold text-primary-700">
                     {t.initials}
                   </div>
                   <div>
-                    <p className="text-sm font-semibold">{t.author}</p>
+                    <p className="text-sm font-semibold text-slate-900">{t.author}</p>
                     <p className="text-xs text-slate-500">{t.role}</p>
                   </div>
                 </div>

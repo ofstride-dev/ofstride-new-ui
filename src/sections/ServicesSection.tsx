@@ -1,34 +1,37 @@
 export function ServicesSection() {
   const services = [
     {
-      title: 'Strategy',
-      description: 'Clarify priorities, operating models, and growth opportunities before you invest in execution.',
-      points: ['Roadmaps', 'Governance', 'Decision support'],
+      title: 'Discover',
+      description: 'Identify where AI can create the highest business impact across customer operations, internal workflows, and growth initiatives.',
+      points: ['Opportunity mapping', 'Process analysis', 'ROI framing'],
     },
     {
-      title: 'Build',
-      description: 'Implement the systems, processes, and leadership rituals that make scale sustainable.',
-      points: ['Enablement', 'Process design', 'Change management'],
+      title: 'Design',
+      description: 'Prototype practical AI agents and workflows that fit your team, tools, and operating model.',
+      points: ['Agent workflows', 'Tool integration', 'Governance setup'],
     },
     {
       title: 'Scale',
-      description: 'Create repeatable structures so you can expand without losing control or speed.',
-      points: ['Analytics', 'Automation', 'High-performance teams'],
+      description: 'Deploy, measure, and optimize so AI becomes a reliable driver of productivity and growth.',
+      points: ['Performance tracking', 'Automation rollout', 'Team adoption'],
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="bg-white py-20">
       <div className="container-page">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-600">Service framing</p>
-          <h2 className="mt-3 text-3xl font-bold text-slate-900">Strategy → Build → Scale</h2>
-          <p className="mt-4 text-lg text-slate-600">We help growth-stage teams bridge strategy and execution with a practical, outcomes-first approach.</p>
+          <p className="eyebrow">Service framing</p>
+          <h2 className="section-title mt-3">From AI ideas to business outcomes</h2>
+          <p className="section-copy">We help ambitious businesses move from experimentation to execution with AI systems that are practical, measurable, and built for real growth.</p>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {services.map((service) => (
-            <article key={service.title} className="card">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary-600">{service.title}</p>
+            <article key={service.title} className="service-card">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+                {service.title === 'Strategy' ? 'S' : service.title === 'Build' ? 'B' : 'R'}
+              </div>
+              <p className="mt-5 text-sm font-semibold uppercase tracking-[0.25em] text-primary-600">{service.title}</p>
               <h3 className="mt-3 text-xl font-semibold text-slate-900">{service.title}</h3>
               <p className="mt-3 text-sm text-slate-600">{service.description}</p>
               <ul className="mt-5 space-y-2 text-sm text-slate-600">
