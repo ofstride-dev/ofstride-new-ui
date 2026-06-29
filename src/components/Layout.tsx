@@ -4,67 +4,45 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Solves the broken cross-route jump behavior
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, elementId: string) => {
+  const handleScrollToId = (e: React.MouseEvent<HTMLAnchorElement>, elementId: string) => {
     e.preventDefault();
     if (location.pathname !== '/') {
       navigate('/');
-      // Allow the router to complete mounting the Home view before calculating element offsets
       setTimeout(() => {
-        const el = document.getElementById(elementId);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 200);
+        const target = document.getElementById(elementId);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }, 250);
     } else {
-      const el = document.getElementById(elementId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      const target = document.getElementById(elementId);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#030712] text-[#f8fafc]">
-      {/* Sticky Header Frame */}
-      <header className="site-header">
+    <div className="flex flex-col min-h-screen bg-[#030712]">
+      {/* Sticky Top Bar Container */}
+      <header className="sticky top-0 z-50 bg-[#030712]/80 backdrop-blur-md border-b border-white/5">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link to="/" className="flex items-center gap-2 text-white group">
-            <span className="flex flex-col leading-none select-none">
-              <span className="text-[1.25rem] font-black tracking-wider text-white italic group-hover:text-[#5D7CC1] transition-colors">
-                OFSTRIDE
-              </span>
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.3em] text-[#A9B9E2] mt-0.5">
-                SERVICES LLP
-              </span>
+          <Link to="/" className="flex items-center gap-2">
+            <span className="flex flex-col leading-none">
+              <span className="text-[1.2rem] font-black tracking-wider text-white italic">OFSTRIDE</span>
+              <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#A9B9E2] mt-0.5">Services LLP</span>
             </span>
           </Link>
-          <nav className="flex gap-8 text-sm font-medium items-center">
-            <Link to="/" className="text-slate-300 transition hover:text-white">
-              Home
-            </Link>
-            <a 
-              href="#services" 
-              onClick={(e) => handleScrollToSection(e, 'services')} 
-              className="text-slate-300 transition hover:text-white"
-            >
-              Services
-            </a>
-            <a 
-              href="#roi-calculator" 
-              onClick={(e) => handleScrollToSection(e, 'roi-calculator')} 
-              className="text-slate-300 transition hover:text-white"
-            >
-              ROI Calculator
-            </a>
-            <Link to="/contact" className="btn-aintric-primary py-2 px-4 text-xs font-bold uppercase tracking-wider">
-              Get Started
-            </Link>
+          <nav className="flex gap-6 text-sm font-medium items-center">
+            <Link to="/" className="text-slate-300 transition hover:text-white">Home</Link>
+            <a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="text-slate-300 transition hover:text-white">Services</a>
+            <a href="#roi-calculator" onClick={(e) => handleScrollToId(e, 'roi-calculator')} className="text-slate-300 transition hover:text-white">ROI Tool</a>
+            <Link to="/contact" className="btn-aintric-primary !py-1.5 !px-3.5 !text-[11px]">Get Started</Link>
           </nav>
         </div>
       </header>
-      
-      {/* Dynamic Shell Main Container */}
+
+      {/* Main App Output Screen */}
       <main className="flex-grow">{children}</main>
 
-      {/* Premium Multi-Column Dark Footer Grid */}
-      <footer className="bg-slate-950 border-t border-slate-900/60 text-slate-400 pt-16 pb-12 mt-24">
+      {/* Structured Dark Footer Grid */}
+      <footer className="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-900 mt-24">
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-4">
             <div className="flex flex-col">
@@ -72,38 +50,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <span className="text-[0.65rem] font-bold tracking-[0.25em] text-[#5D7CC1] uppercase mt-0.5">SERVICES LLP</span>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Industrial-grade AI automation workflows, deterministic agent logic architectures, and processing engineering built for scaling growing business margins.
+              Industrial-grade AI automation architectures and deterministic agent execution frameworks optimized for small business growth.
             </p>
           </div>
-          
           <div>
-            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Core Focus Elements</h4>
-            <ul className="space-y-2.5 text-xs">
-              <li><a href="#services" onClick={(e) => handleScrollToSection(e, 'services')} className="hover:text-white transition-colors">Agentic Operations</a></li>
-              <li><a href="#services" onClick={(e) => handleScrollToSection(e, 'services')} className="hover:text-white transition-colors">LLM Integrations</a></li>
-              <li><a href="#roi-calculator" onClick={(e) => handleScrollToSection(e, 'roi-calculator')} className="hover:text-white transition-colors">ROI Quantifiers</a></li>
+            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Core Ecosystem</h4>
+            <ul className="space-y-2 text-xs">
+              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">Agent Customization</a></li>
+              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">LLM Fine-Tuning</a></li>
             </ul>
           </div>
-
           <div>
-            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Operational Assurance</h4>
-            <ul className="space-y-2.5 text-xs text-slate-600">
-              <li>Data Isolation Protocol</li>
-              <li>Privacy Matrix System</li>
-              <li>SOC 2 Mapping Logs</li>
-            </ul>
+            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Governance</h4>
+            <p className="text-xs text-slate-500">Secure Data Isolation Protocol</p>
           </div>
-
           <div>
-            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Corporate Office</h4>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Indira Nagar, Bengaluru,<br />
-              Karnataka, India
-            </p>
+            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Location</h4>
+            <p className="text-xs text-slate-400">Indira Nagar, Bengaluru, India</p>
           </div>
         </div>
         <div className="mx-auto max-w-6xl px-6 mt-12 pt-8 border-t border-slate-900 text-center text-xs text-slate-600">
-          &copy; {new Date().getFullYear()} Ofstride Services LLP. All Rights Reserved. Built for production precision.
+          &copy; {new Date().getFullYear()} Ofstride Services LLP. All Rights Reserved.
         </div>
       </footer>
     </div>
