@@ -24,14 +24,34 @@ jobs:
           submodules: true
           lfs: false
 
+      - name: Debug - Check files after checkout
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "--- Root contents ---"
+          ls -la
+          echo "--- Looking for lock files ---"
+          find . -maxdepth 3 -name "package-lock.json" -o -name "npm-shrinkwrap.json"
+          echo "--- Git tracked lock files ---"
+          git ls-files | grep -i "package-lock\|npm-shrinkwrap" || echo "No lock files tracked by git"
+          echo "--- package.json location ---"
+          find . -maxdepth 3 -name "package.json"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '24'
-          cache: 'npm'
+          # Temporarily disable cache to rule out stale cache issues
+          # Re-enable after first successful run: cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: |
+          if [ -f package-lock.json ]; then
+            echo "Found package-lock.json, running npm ci..."
+            npm ci
+          else
+            echo "WARNING: package-lock.json not found in $(pwd), falling back to npm install..."
+            npm install
+          fi
 
       - name: Build Application
         run: npm run build
