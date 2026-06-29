@@ -22,14 +22,14 @@ export function ServicesSection() {
       <div className="container-page">
         <div className="max-w-3xl">
           <p className="eyebrow">Service framing</p>
-          <h2 className="section-title mt-3">From AI ideas to business outcomes</h2>
+          <h2 className="section-title mt-3">From idea to implementation, with clarity</h2>
           <p className="section-copy">We help ambitious businesses move from experimentation to execution with AI systems that are practical, measurable, and built for real growth.</p>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {services.map((service) => (
             <article key={service.title} className="service-card">
               <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-                {service.title === 'Strategy' ? 'S' : service.title === 'Build' ? 'B' : 'R'}
+                {service.title === 'Discover' ? '01' : service.title === 'Design' ? '02' : '03'}
               </div>
               <p className="mt-5 text-sm font-semibold uppercase tracking-[0.25em] text-primary-600">{service.title}</p>
               <h3 className="mt-3 text-xl font-semibold text-slate-900">{service.title}</h3>

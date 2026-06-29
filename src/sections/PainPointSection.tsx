@@ -15,7 +15,7 @@ export function PainPointSection() {
               The Challenge
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-tight">
-              The growth trap: when teams are busy but not scaling
+              The growth trap: when activity is high but momentum is low
             </h2>
             <p className="mt-4 text-slate-400 leading-relaxed">
               As your business grows, fragmented workflows and reactive decision-making create drag across the company. 
