@@ -73,28 +73,6 @@ export function Contact() {
             </div>
           </div>
         </section>
-
-        <section className="bg-slate-50 py-12">
-          <div className="container-page">
-            <div className="grid gap-6 md:grid-cols-3 text-center">
-              <div className="card">
-                <div className="text-3xl mb-2">⏱️</div>
-                <p className="font-semibold">&lt; 24h Response SLA</p>
-                <p className="text-sm text-slate-500 mt-1">Every system intake receives a design proposal back within a single business day.</p>
-              </div>
-              <div className="card">
-                <div className="text-3xl mb-2">🛡️</div>
-                <p className="font-semibold">Confidentiality Assured</p>
-                <p className="text-sm text-slate-500 mt-1">All data parameters remain strictly isolated under automated security provisions.</p>
-              </div>
-              <div className="card">
-                <div className="text-3xl mb-2">🤝</div>
-                <p className="font-semibold">Complimentary System Review</p>
-                <p className="text-sm text-slate-500 mt-1">Your initial technical exploratory sync includes an active workflow roadmap proposal.</p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </>
   );
