@@ -1,3 +1,4 @@
+// src/components/Calendly/CalendlyEmbed.tsx
 import { useRef, useState, useEffect } from 'react';
 
 declare global {
@@ -19,7 +20,7 @@ interface CalendlyEmbedProps {
   prefill?: Record<string, string>;
 }
 
-export function CalendlyEmbed({ url, height = 650, prefill = {} }: CalendlyEmbedProps) {
+export function CalendlyEmbed({ url, height = 700, prefill = {} }: CalendlyEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,16 +30,11 @@ export function CalendlyEmbed({ url, height = 650, prefill = {} }: CalendlyEmbed
     let retryCount = 0;
     const maxRetries = 30;
 
-    // Appends dark themes styling markers to the embedded URL properties to complement free accounts
-    const darkUrlMarker = url.includes('?') 
-      ? `${url}&background_color=030712&text_color=f8fafc&primary_color=00209F`
-      : `${url}?background_color=030712&text_color=f8fafc&primary_color=00209F`;
-
     const initWidget = () => {
       if (window.Calendly && containerRef.current) {
         try {
           window.Calendly.initInlineWidget({
-            url: darkUrlMarker,
+            url,
             parentElement: containerRef.current,
             prefill,
             utm: {},
@@ -51,7 +47,7 @@ export function CalendlyEmbed({ url, height = 650, prefill = {} }: CalendlyEmbed
         retryCount++;
         timeoutId = setTimeout(initWidget, 200);
       } else {
-        setError('Calendar container timed out. Please refresh to restore synchronization.');
+        setError('Calendar widget failed to load. Please refresh or contact us directly.');
       }
     };
 
@@ -65,17 +61,17 @@ export function CalendlyEmbed({ url, height = 650, prefill = {} }: CalendlyEmbed
       style={{ minWidth: '320px', height: `${height}px` }}
       aria-label={loaded ? 'Booking calendar' : 'Loading booking calendar'}
       role="region"
-      className="rounded-xl border border-white/5 bg-[#030712] overflow-hidden w-full transition-all"
+      className="rounded-2xl border border-white/5 bg-slate-950/40 backdrop-blur-xl overflow-hidden shadow-2xl transition-all duration-300 filter invert-[0.03] hue-rotate-180"
     >
       {!loaded && !error && (
         <div className="flex flex-col items-center justify-center h-full gap-3 text-slate-500">
-          <div className="h-8 w-8 border-2 border-white/10 border-t-[#5D7CC1] rounded-full animate-spin" />
-          <p className="text-xs font-semibold uppercase tracking-wider">Syncing Hub Elements...</p>
+          <div className="h-6 w-6 border-2 border-slate-700 border-t-[#5D7CC1] rounded-full animate-spin" />
+          <p className="text-xs uppercase tracking-widest font-semibold">Loading Interface...</p>
         </div>
       )}
       {error && (
         <div className="flex flex-col items-center justify-center h-full gap-3 p-6 text-center">
-          <p className="text-red-400 text-sm font-semibold">{error}</p>
+          <p className="text-red-400 text-xs font-medium">{error}</p>
         </div>
       )}
     </div>
