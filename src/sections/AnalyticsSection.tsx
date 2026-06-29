@@ -25,7 +25,7 @@ const STATIC_DATA: AnalyticsData = {
     { label: 'Projects Delivered', value: '120', suffix: '+' },
     { label: 'Client Retention', value: '94', suffix: '%' },
   ],
-  caseStudies: siteContent.caseStudies,
+  caseStudies: siteContent.caseStudies || [],
 };
 
 function useAnalyticsData() {
@@ -43,7 +43,7 @@ function useAnalyticsData() {
         setIsLive(true);
       })
       .catch(() => {
-        // Silently fall back to static data
+        // Fallback to static data on error
       });
   }, []);
 
@@ -54,35 +54,37 @@ export function AnalyticsSection() {
   const { data, isLive } = useAnalyticsData();
 
   return (
-    <section className="bg-slate-950 py-20 text-white">
+    <section id="analytics" className="py-24 border-t border-slate-900/40">
       <div className="container-page">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <p className="eyebrow text-primary-400">
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#5D7CC1]">
             {isLive ? 'Live Impact Metrics' : 'Impact Metrics'}
-          </p>
-          <h2 className="section-title mt-3 text-white">Results That Speak</h2>
-          <p className="section-copy mx-auto text-slate-400">
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-white aintric-gradient-text mt-3">Results That Speak</h2>
+          <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-xl">
             Measurable outcomes from AI-led consulting engagements across operations, growth, finance, and support.
           </p>
         </div>
         
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {data.metrics.map((m) => (
-            <div key={m.label} className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center transition hover:bg-white/10">
-              <div className="text-4xl font-bold gradient-text">
+            <div key={m.label} className="aintric-card text-center">
+              <div className="text-3xl font-black text-white">
                 {m.value}{m.suffix}
               </div>
-              <p className="mt-2 text-sm text-slate-400">{m.label}</p>
+              <p className="mt-1.5 text-xs text-slate-400 font-medium">{m.label}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {data.caseStudies.map((study) => (
-            <div key={study.title} className="rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
-              <h3 className="text-lg font-semibold">{study.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-400">{study.summary}</p>
-              <p className="mt-4 text-sm font-bold text-primary-400">{study.metric}</p>
+            <div key={study.title} className="aintric-card flex flex-col justify-between">
+              <div>
+                <h3 className="text-base font-bold text-white tracking-tight">{study.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-400">{study.summary}</p>
+              </div>
+              <p className="mt-4 text-xs font-bold text-[#5D7CC1] border-t border-white/5 pt-3">{study.metric}</p>
             </div>
           ))}
         </div>
