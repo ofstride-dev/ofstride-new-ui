@@ -2,120 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 1. FORCE CORE DARK BASELINE VISUALS */
 :root {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #f8fafc;
-  background-color: #030712;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #030712 !important;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  /* Ambient backdrop glows using Ofstride Corporate Blues */
-  background: 
-    radial-gradient(circle at 15% 15%, rgba(0, 32, 159, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(93, 124, 193, 0.12) 0%, transparent 50%),
-    #030712;
-  color: #f8fafc;
-  overflow-x: hidden;
+  color: #f8fafc !important;
+  background-color: #030712 !important;
+  /* Ambient glowing backdrop layers matching AIntric using corporate colors */
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(0, 32, 159, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 65%, rgba(93, 124, 193, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 50% 110%, rgba(0, 32, 159, 0.12) 0%, transparent 50%) !important;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism containers matching aintric.com structural components */
-.aintric-card {
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(169, 185, 226, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 1.25rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* 2. NEUTRALIZING UTILITY OVERRIDES (Fixes blocky layouts) */
+section, 
+div.bg-white, 
+section.bg-white, 
+.bg-slate-50, 
+.bg-slate-100, 
+.bg-white {
+  background-color: transparent !important;
+  background-image: none !important;
 }
 
-.aintric-card:hover {
-  border-color: rgba(93, 124, 193, 0.3);
-  box-shadow: 0 20px 40px rgba(0, 32, 159, 0.2);
-  transform: translateY(-2px);
+/* 3. UNIVERSAL TEXT CONTRAST CORRECTIONS */
+h1, h2, h3, h4, .text-slate-900, .text-slate-800, .text-gray-900 {
+  color: #ffffff !important;
 }
 
-/* Adaptive Form Input Control Fields Overrides */
-.aintric-input {
+p, span, li, .text-slate-600, .text-slate-700, .text-gray-600 {
+  color: #94a3b8 !important; /* Elegant slate-400 contrast description mapping */
+}
+
+/* 4. AINTRIC HIGH-FIDELITY COMPONENT MATRIX */
+.aintric-card, .service-card, .card, .hero-panel, .kpi-card {
+  background: rgba(255, 255, 255, 0.01) !important;
+  border: 1px solid rgba(169, 185, 226, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-radius: 1.25rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.aintric-card:hover, .service-card:hover, .card:hover, .hero-panel:hover {
+  border-color: rgba(93, 124, 193, 0.35) !important;
+  box-shadow: 0 20px 40px rgba(0, 32, 159, 0.25) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* 5. INPUT CONTEXT CONVERSIONS */
+.aintric-input, input[type="text"], input[type="email"], textarea {
   width: 100%;
   background: rgba(255, 255, 255, 0.02) !important;
   border: 1px solid rgba(169, 185, 226, 0.12) !important;
   border-radius: 0.75rem !important;
   padding: 0.85rem 1rem !important;
   color: #ffffff !important;
-  font-size: 0.9rem !important;
   transition: all 0.2s ease !important;
 }
 
-.aintric-input:focus {
+.aintric-input:focus, input:focus, textarea:focus {
   outline: none !important;
   border-color: #5D7CC1 !important;
   background: rgba(255, 255, 255, 0.04) !important;
   box-shadow: 0 0 0 3px rgba(93, 124, 193, 0.2) !important;
 }
 
-/* High-contrast Title Gradients */
-.aintric-gradient-text {
-  background: linear-gradient(135deg, #ffffff 40%, #A9B9E2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* 6. GRADIENT TEXT MASKS */
+.aintric-gradient-text, .gradient-text, .section-title {
+  background: linear-gradient(135deg, #ffffff 40%, #A9B9E2 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
 }
 
-/* Button Micro-interactions and Glow States */
-.btn-aintric-primary {
+/* 7. PREMIUM BUTTON HOVER INTERACTIONS */
+.btn-aintric-primary, .btn-primary, .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #00209F 0%, #3b5cb4 100%);
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.85rem 1.75rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(169, 185, 226, 0.25);
+  background: linear-gradient(135deg, #00209F 0%, #3b5cb4 100%) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  padding: 0.85rem 1.75rem !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid rgba(169, 185, 226, 0.25) !important;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 14px rgba(0, 32, 159, 0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 14px rgba(0, 32, 159, 0.4) !important;
 }
 
-.btn-aintric-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 22px rgba(0, 32, 159, 0.65);
-  border-color: rgba(169, 185, 226, 0.4);
-  background: linear-gradient(135deg, #00197d 0%, #4c6ec7 100%);
+.btn-aintric-primary:hover, .btn-primary:hover, .btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 22px rgba(0, 32, 159, 0.65) !important;
+  border-color: rgba(169, 185, 226, 0.4) !important;
+  background: linear-gradient(135deg, #00197d 0%, #4c6ec7 100%) !important;
 }
 
 .btn-aintric-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.02);
-  color: #f8fafc;
-  font-weight: 700;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.85rem 1.75rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(169, 185, 226, 0.15);
-  cursor: pointer;
-  transition: all 0.25s ease;
+  background: rgba(255, 255, 255, 0.02) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(169, 185, 226, 0.15) !important;
 }
 
 .btn-aintric-secondary:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(93, 124, 193, 0.5);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(93, 124, 193, 0.5) !important;
 }
