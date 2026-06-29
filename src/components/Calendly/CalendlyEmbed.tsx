@@ -1,3 +1,4 @@
+// src/components/Calendly/CalendlyEmbed.tsx
 import { useRef, useState, useEffect } from 'react';
 
 declare global {
@@ -27,7 +28,7 @@ export function CalendlyEmbed({ url, height = 700, prefill = {} }: CalendlyEmbed
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
     let retryCount = 0;
-    const maxRetries = 30;
+    const maxRetries = 30; // 6 seconds max wait
 
     const initWidget = () => {
       if (window.Calendly && containerRef.current) {
@@ -39,9 +40,8 @@ export function CalendlyEmbed({ url, height = 700, prefill = {} }: CalendlyEmbed
             utm: {},
           });
           setLoaded(true);
-          clearTimeout(timeoutId);
         } catch {
-          setError('Failed to load calendar widget');
+          setError('Failed to initialize calendar widget');
         }
       } else if (retryCount < maxRetries) {
         retryCount++;
@@ -51,16 +51,10 @@ export function CalendlyEmbed({ url, height = 700, prefill = {} }: CalendlyEmbed
       }
     };
 
-    if (document.readyState === 'complete') {
-      initWidget();
-    } else {
-      window.addEventListener('load', initWidget);
-    }
+    // Script is already in index.html, just wait for it
+    initWidget();
 
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('load', initWidget);
-    };
+    return () => clearTimeout(timeoutId);
   }, [url, prefill]);
 
   return (
