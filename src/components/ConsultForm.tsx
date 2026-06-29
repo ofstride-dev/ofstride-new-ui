@@ -25,7 +25,7 @@ export function ConsultForm({
   submitLabel = 'Request a consult',
   compact = false,
 }: ConsultFormProps) {
-  const { status, submitForm, reset } = useFormSubmit(import.meta.env.VITE_WEB3FORMS_KEY);
+  const { status, submitForm, reset } = useFormSubmit((import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env?.VITE_WEB3FORMS_KEY ?? '');
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
 

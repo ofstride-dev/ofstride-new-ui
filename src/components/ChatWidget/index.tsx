@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useLeadIntake } from '../../hooks/useLeadIntake';
 import { useChatPersistence } from '../../hooks/useChatPersistence';
-import type { ChatMessage, LeadInfo, IntakeStep } from '../../types/chat';
+import type { ChatMessage, LeadInfo } from '../../types/chat';
 import { ChatHeader } from './ChatHeader';
 import { ChatMessages } from './ChatMessages';
 import { ChatInput } from './ChatInput';
@@ -94,19 +94,19 @@ function ChatWidgetContent() {
       addMessage(botMsg);
     }
 
-    if (result.success && isComplete && result.updatedLead) {
+    if (result.success && isComplete && lead.name) {
       const formData = new FormData();
-      formData.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY);
-      formData.append('subject', `Chat Lead: ${result.updatedLead.name} — ${result.updatedLead.company}`);
-      formData.append('name', result.updatedLead.name);
+      formData.append('access_key', (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env?.VITE_WEB3FORMS_KEY ?? '');
+      formData.append('subject', `Chat Lead: ${lead.name} — ${lead.company}`);
+      formData.append('name', lead.name);
       formData.append('email', 'chat-lead@ofstride.com');
       formData.append('message', 
         `Chat Lead Submission:\n` +
-        `Name: ${result.updatedLead.name}\n` +
-        `Phone: ${result.updatedLead.phone}\n` +
-        `Location: ${result.updatedLead.location}\n` +
-        `Company: ${result.updatedLead.company}\n` +
-        `Need: ${result.updatedLead.taskSummary}`
+        `Name: ${lead.name}\n` +
+        `Phone: ${lead.phone}\n` +
+        `Location: ${lead.location}\n` +
+        `Company: ${lead.company}\n` +
+        `Need: ${lead.taskSummary}`
       );
       formData.append('botcheck', '');
       

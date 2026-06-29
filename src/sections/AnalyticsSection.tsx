@@ -33,7 +33,7 @@ function useAnalyticsData() {
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_DATA_API;
+    const apiUrl = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env?.VITE_DATA_API;
     if (!apiUrl) return;
 
     fetch(`${apiUrl}/api/charts/overview`)

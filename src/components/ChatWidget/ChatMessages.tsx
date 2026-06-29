@@ -1,11 +1,11 @@
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 import type { ChatMessage } from '../../types/chat';
 
 interface ChatMessagesProps {
   messages: ChatMessage[];
   isLoading: boolean;
   onOptionClick: (value: string) => void;
-  messagesEndRef: RefObject<HTMLDivElement | null>;
+  messagesEndRef: RefObject<HTMLDivElement>;
 }
 
 export function ChatMessages({ messages, isLoading, onOptionClick, messagesEndRef }: ChatMessagesProps) {

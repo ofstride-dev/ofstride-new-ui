@@ -4,7 +4,7 @@ import { SEO } from '../components/SEO';
 import { siteContent } from '../data/siteContent';
 
 export function Contact() {
-  const calendlyUrl = import.meta.env.VITE_CALENDLY_URL || 'https://calendly.com/ofstride/30min';
+  const calendlyUrl = (import.meta as ImportMeta & { env?: Record<string, string | undefined> }).env?.VITE_CALENDLY_URL || 'https://calendly.com/ofstride/30min';
 
   return (
     <>
