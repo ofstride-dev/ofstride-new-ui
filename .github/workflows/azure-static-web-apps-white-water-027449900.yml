@@ -24,41 +24,30 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: Debug - Check files after checkout
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "--- Root contents ---"
-          ls -la
-          echo "--- Looking for lock files ---"
-          find . -maxdepth 3 -name "package-lock.json" -o -name "npm-shrinkwrap.json"
-          echo "--- Git tracked lock files ---"
-          git ls-files | grep -i "package-lock\|npm-shrinkwrap" || echo "No lock files tracked by git"
-          echo "--- package.json location ---"
-          find . -maxdepth 3 -name "package.json"
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          # Temporarily disable cache to rule out stale cache issues
-          # Re-enable after first successful run: cache: 'npm'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            echo "Found package-lock.json, running npm ci..."
-            npm ci
-          else
-            echo "WARNING: package-lock.json not found in $(pwd), falling back to npm install..."
-            npm install
-          fi
+        run: npm ci
 
       - name: Build Application
         run: npm run build
 
+      - name: Check Azure secret presence
+        shell: bash
+        run: |
+          if [ -n "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WAS_OFSTRIDE_002 }}" ]; then
+            echo "AZURE_SECRET_PRESENT=true" >> "$GITHUB_ENV"
+          else
+            echo "AZURE_SECRET_PRESENT=false" >> "$GITHUB_ENV"
+          fi
+
       - name: Build And Deploy
         id: builddeploy
-        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WAS_OFSTRIDE_002 != '' }}
+        if: env.AZURE_SECRET_PRESENT == 'true'
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WAS_OFSTRIDE_002 }}
@@ -71,9 +60,18 @@ jobs:
     runs-on: ubuntu-latest
     name: Close Pull Request Job
     steps:
+      - name: Check Azure secret presence
+        shell: bash
+        run: |
+          if [ -n "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WAS_OFSTRIDE_002 }}" ]; then
+            echo "AZURE_SECRET_PRESENT=true" >> "$GITHUB_ENV"
+          else
+            echo "AZURE_SECRET_PRESENT=false" >> "$GITHUB_ENV"
+          fi
+
       - name: Close Pull Request
         id: closepullrequest
-        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WAS_OFSTRIDE_002 != '' }}
+        if: env.AZURE_SECRET_PRESENT == 'true'
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WAS_OFSTRIDE_002 }}
