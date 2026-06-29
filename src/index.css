@@ -1,9 +1,9 @@
 :root {
-  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #0f172a;
-  background-color: #f8fafc;
+  color: #f8fafc;
+  background-color: #030712; /* Premium dark background baseline */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -12,6 +12,8 @@
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -19,263 +21,120 @@ html {
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(0, 32, 159, 0.08), transparent 30%),
-    linear-gradient(135deg, #fbfcd7 0%, #f4f6fc 50%, #f8fafc 100%);
-  color: #0f172a;
-  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.65;
-  letter-spacing: -0.01em;
+  /* Glowing multi-layer gradients mimicking aintric.com matching your corporate blue palette */
+  background: 
+    radial-gradient(circle at 10% 15%, rgba(0, 32, 159, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(93, 124, 193, 0.12) 0%, transparent 45%),
+    #030712;
+  color: #f8fafc;
+  overflow-x: hidden;
 }
 
 section {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 6rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Glassmorphic Card structures matching aintric.com */
+.aintric-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(169, 185, 226, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-img {
-  max-width: 100%;
-  display: block;
+.aintric-card:hover {
+  border-color: rgba(93, 124, 193, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 32, 159, 0.25);
+  transform: translateY(-2px);
 }
 
-#root {
-  min-height: 100vh;
-}
-
-.container-page {
-  width: min(1180px, calc(100% - 2rem));
-  margin: 0 auto;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.9rem 1.5rem;
-  border-radius: 0.75rem;
-  font-weight: 600;
-  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
-  cursor: pointer;
-  min-height: 46px;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(0, 32, 159, 0.15);
-}
-
-.btn-primary {
-  background: #00209F;
-  color: white;
-  border: 1px solid #00209F;
-}
-
-.btn-primary:hover {
-  background: #112ba1;
-}
-
-.card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
-  padding: 1.5rem;
-}
-
-.input {
-  display: block;
-  width: 100%;
-  border: 1px solid #dbe4f0;
-  border-radius: 0.75rem;
-  padding: 0.85rem 1rem;
-  font: inherit;
-  background: white;
-  color: #0f172a;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #00209F;
-  box-shadow: 0 0 0 3px rgba(0, 32, 159, 0.15);
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #00209F, #5D7CC1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Layout helpers */
-.mx-auto { margin-left: auto; margin-right: auto; }
-.max-w-2xl { max-width: 42rem; }
-.max-w-3xl { max-width: 48rem; }
-.max-w-6xl { max-width: 72rem; }
-.block { display: block; }
-.inline-flex { display: inline-flex; }
-.flex { display: flex; }
-.flex-wrap { flex-wrap: wrap; }
-.grid { display: grid; }
-.items-center { align-items: center; }
-.items-start { align-items: flex-start; }
-.justify-between { justify-content: space-between; }
-.justify-center { justify-content: center; }
-.gap-2 { gap: 0.5rem; }
-.gap-3 { gap: 0.75rem; }
-.gap-4 { gap: 1rem; }
-.gap-6 { gap: 1.5rem; }
-.gap-8 { gap: 2rem; }
-.gap-10 { gap: 2.5rem; }
-.space-y-2 > * + * { margin-top: 0.5rem; }
-.space-y-3 > * + * { margin-top: 0.75rem; }
-.space-y-4 > * + * { margin-top: 1rem; }
-.space-y-5 > * + * { margin-top: 1.25rem; }
-.p-4 { padding: 1rem; }
-.p-5 { padding: 1.25rem; }
-.p-8 { padding: 2rem; }
-.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
-.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-.py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
-.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-.py-12 { padding-top: 3rem; padding-bottom: 3rem; }
-.py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-.py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-.pt-6 { padding-top: 1.5rem; }
-.pb-6 { padding-bottom: 1.5rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 0.75rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mb-12 { margin-bottom: 3rem; }
-.mt-1 { margin-top: 0.25rem; }
-.mt-3 { margin-top: 0.75rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-5 { margin-top: 1.25rem; }
-.mt-6 { margin-top: 1.5rem; }
-.mt-8 { margin-top: 2rem; }
-.mt-10 { margin-top: 2.5rem; }
-.mt-12 { margin-top: 3rem; }
-.ml-2 { margin-left: 0.5rem; }
-.mr-2 { margin-right: 0.5rem; }
-
-/* Typography styling */
-.text-3xl { font-size: 1.875rem; line-height: 1.2; }
-.text-4xl { font-size: 2.5rem; line-height: 1.1; }
-.text-xl { font-size: 1.25rem; line-height: 1.4; }
-.text-lg { font-size: 1.125rem; line-height: 1.6; }
-.text-sm { font-size: 0.875rem; line-height: 1.5; }
-.text-xs { font-size: 0.75rem; line-height: 1.4; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.leading-tight { line-height: 1.2; }
-.leading-relaxed { line-height: 1.7; }
-.uppercase { text-transform: uppercase; }
-.text-center { text-align: center; }
-.tracking-\[0\.3em\] { letter-spacing: 0.3em; }
-.text-white { color: white; }
-.text-slate-300 { color: #cbd5e1; }
-.text-slate-400 { color: #94a3b8; }
-.text-slate-500 { color: #64748b; }
-.text-slate-600 { color: #475569; }
-.text-slate-700 { color: #334155; }
-.text-slate-900 { color: #0f172a; }
-
-/* Adjusted Brand Mapping Variables */
-.text-primary-200 { color: #A9B9E2; }
-.text-primary-400 { color: #5D7CC1; }
-.text-primary-600 { color: #00209F; }
-.text-primary-700 { color: #001773; }
-.text-red-400 { color: #f87171; }
-.text-red-500 { color: #ef4444; }
-.text-emerald-400 { color: #34d399; }
-.text-amber-400 { color: #fbbf24; }
-
-/* Background systems mapping */
-.bg-white { background-color: white; }
-.bg-white\/5 { background-color: rgba(255, 255, 255, 0.05); }
-.bg-white\/10 { background-color: rgba(255, 255, 255, 0.1); }
-.bg-slate-50 { background-color: #f8fafc; }
-.bg-slate-900 { background-color: #0f172a; }
-.bg-slate-950 { background-color: #020617; }
-.bg-primary-100 { background-color: #e6eaff; }
-.bg-primary-600 { background-color: #00209F; }
-.bg-primary-700 { background-color: #001773; }
-.bg-slate-100 { background-color: #f1f5f9; }
-
-/* Borders setup */
-.border { border: 1px solid #e2e8f0; }
-.border-slate-100 { border-color: #f1f5f9; }
-.border-slate-200 { border-color: #e2e8f0; }
-.border-white\/10 { border-color: rgba(255,255,255,0.1); }
-.border-white\/20 { border-color: rgba(255,255,255,0.2); }
-.border-white\/30 { border-color: rgba(255,255,255,0.3); }
-.rounded-full { border-radius: 9999px; }
-.rounded-xl { border-radius: 1rem; }
-.rounded-2xl { border-radius: 1.25rem; }
-
-/* Polished components wrappers */
-.site-shell { min-height: 100vh; display: flex; flex-col: column; }
+/* Premium Navigation Frame Layout */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 40;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
-  background: rgba(255, 255, 255, 0.88);
+  z-index: 50;
+  border-b: 1px solid rgba(169, 185, 226, 0.08);
+  background: rgba(3, 7, 18, 0.75);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.brand-mark {
+
+/* Interactive CTA Buttons matching aintric.com interactive buttons */
+.btn-aintric-primary {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-}
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #00209F;
-}
-.premium-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  box-shadow: 0 16px 40px rgba(0, 32, 159, 0.04);
-}
-.service-card {
-  background: white;
-  border: 1px solid #e2e8f0;
-  border-radius: 1rem;
-  padding: 1.6rem;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.03);
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-}
-.service-card:hover {
-  transform: translateY(-3px);
-  border-color: #A9B9E2;
-  box-shadow: 0 18px 40px rgba(0, 32, 159, 0.08);
-}
-.cta-band {
-  background: linear-gradient(135deg, #001360 0%, #00209F 50%, #1738be 100%);
-  position: relative;
-  overflow: hidden;
-}
-.kpi-card {
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.07);
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  min-height: 112px;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
+  background: linear-gradient(135deg, #00209F 0%, #3b5cb4 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(169, 185, 226, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 32, 159, 0.4);
+}
+
+.btn-aintric-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 32, 159, 0.6);
+  background: linear-gradient(135deg, #00197d 0%, #4c6ec7 100%);
+}
+
+.btn-aintric-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f8fafc;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(169, 185, 226, 0.15);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-aintric-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(93, 124, 193, 0.5);
+}
+
+/* Typography Gradient Matching aintric.com text mask fields */
+.aintric-gradient-text {
+  background: linear-gradient(135deg, #ffffff 30%, #A9B9E2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.container-page {
+  width: min(1200px, calc(100% - 3rem));
+  margin: 0 auto;
+}
+
+/* Custom Custom Input Triggers For WebForms */
+.aintric-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(169, 185, 226, 0.15);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.aintric-input:focus {
+  outline: none;
+  border-color: #5D7CC1;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(93, 124, 193, 0.2);
 }
