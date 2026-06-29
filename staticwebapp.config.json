@@ -2,10 +2,18 @@
   "$schema": "https://json.schemastore.org/staticwebapp.config.json",
   "routes": [
     {
-      "route": "/*",
+      "route": "/contact",
+      "rewrite": "/index.html"
+    },
+    {
+      "route": "/",
       "rewrite": "/index.html"
     }
   ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/*.{css,js,png,jpg,jpeg,svg,webp,ico,gif,woff,woff2,ttf,eot,json,txt}"]
+  },
   "responseOverrides": {
     "404": {
       "rewrite": "/index.html"
