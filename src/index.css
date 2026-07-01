@@ -6,25 +6,41 @@
 :root {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color-scheme: dark;
+  --bg-primary: #050816;
+  --bg-secondary: #0b1220;
+  --surface: rgba(8, 17, 31, 0.68);
+  --surface-strong: rgba(14, 22, 38, 0.82);
+  --border-soft: rgba(93, 124, 193, 0.18);
+  --border-strong: rgba(169, 185, 226, 0.3);
+  --accent-blue: #5D7CC1;
+  --accent-cyan: #A9B9E2;
+  --accent-teal: #14B8A6;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #030712 !important;
+  background-color: var(--bg-primary) !important;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  color: #f8fafc !important;
-  background-color: #030712 !important;
-  /* Ambient glowing backdrop layers matching AIntric using corporate colors */
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(0, 32, 159, 0.15) 0%, transparent 40%),
-    radial-gradient(circle at 85% 65%, rgba(93, 124, 193, 0.1) 0%, transparent 45%),
-    radial-gradient(circle at 50% 110%, rgba(0, 32, 159, 0.12) 0%, transparent 50%) !important;
+  color: var(--text-primary) !important;
+  background-color: var(--bg-primary) !important;
+  background-image:
+    radial-gradient(circle at 15% 12%, rgba(93, 124, 193, 0.32) 0%, transparent 26%),
+    radial-gradient(circle at 82% 24%, rgba(20, 184, 166, 0.18) 0%, transparent 24%),
+    radial-gradient(circle at 52% 118%, rgba(93, 124, 193, 0.14) 0%, transparent 24%),
+    linear-gradient(180deg, #050816 0%, #08101f 45%, #030712 100%) !important;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
+}
+
+.container-page {
+  width: min(72rem, calc(100vw - 3rem));
+  margin-inline: auto;
 }
 
 /* 2. NEUTRALIZING UTILITY OVERRIDES (Fixes blocky layouts) */
@@ -49,17 +65,18 @@ p, span, li, .text-slate-600, .text-slate-700, .text-gray-600 {
 
 /* 4. AINTRIC HIGH-FIDELITY COMPONENT MATRIX */
 .aintric-card, .service-card, .card, .hero-panel, .kpi-card {
-  background: rgba(255, 255, 255, 0.01) !important;
-  border: 1px solid rgba(169, 185, 226, 0.08) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  border-radius: 1.25rem !important;
+  background: linear-gradient(180deg, rgba(14, 23, 40, 0.74), rgba(8, 15, 28, 0.52)) !important;
+  border: 1px solid var(--border-soft) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  border-radius: 1.4rem !important;
+  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.18) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .aintric-card:hover, .service-card:hover, .card:hover, .hero-panel:hover {
-  border-color: rgba(93, 124, 193, 0.35) !important;
-  box-shadow: 0 20px 40px rgba(0, 32, 159, 0.25) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: 0 20px 50px rgba(5, 14, 39, 0.3), 0 0 0 1px rgba(93, 124, 193, 0.16) !important;
   transform: translateY(-2px) !important;
 }
 
@@ -94,7 +111,7 @@ p, span, li, .text-slate-600, .text-slate-700, .text-gray-600 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #00209F 0%, #3b5cb4 100%) !important;
+  background: linear-gradient(135deg, #5D7CC1 0%, #14B8A6 100%) !important;
   color: #ffffff !important;
   font-weight: 700 !important;
   font-size: 0.75rem !important;
@@ -102,17 +119,17 @@ p, span, li, .text-slate-600, .text-slate-700, .text-gray-600 {
   letter-spacing: 0.06em !important;
   padding: 0.85rem 1.75rem !important;
   border-radius: 0.75rem !important;
-  border: 1px solid rgba(169, 185, 226, 0.25) !important;
+  border: 1px solid rgba(169, 185, 226, 0.2) !important;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 0 4px 14px rgba(0, 32, 159, 0.4) !important;
+  box-shadow: 0 10px 24px rgba(67, 97, 191, 0.4) !important;
 }
 
 .btn-aintric-primary:hover, .btn-primary:hover, .btn:hover {
   transform: translateY(-1px) !important;
-  box-shadow: 0 6px 22px rgba(0, 32, 159, 0.65) !important;
-  border-color: rgba(169, 185, 226, 0.4) !important;
-  background: linear-gradient(135deg, #00197d 0%, #4c6ec7 100%) !important;
+  box-shadow: 0 14px 28px rgba(20, 184, 166, 0.35), 0 0 0 1px rgba(169, 185, 226, 0.18) !important;
+  border-color: rgba(169, 185, 226, 0.35) !important;
+  background: linear-gradient(135deg, #4871c8 0%, #189f94 100%) !important;
 }
 
 .btn-aintric-secondary {

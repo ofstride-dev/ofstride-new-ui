@@ -20,56 +20,67 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#030712]">
-      {/* Sticky Top Bar Container */}
-      <header className="sticky top-0 z-50 bg-[#030712]/80 backdrop-blur-md border-b border-white/5">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link to="/" className="flex items-center gap-2">
+      <header className="sticky top-0 z-50 border-b border-white/5 bg-[#050816]/70 backdrop-blur-2xl">
+        <div className="container-page flex items-center justify-between py-4">
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/assets/logo/logo.png" alt="Ofstride logo" className="h-10 w-10 object-contain" />
             <span className="flex flex-col leading-none">
-              <span className="text-[1.2rem] font-black tracking-wider text-white italic">OFSTRIDE</span>
-              <span className="text-[0.62rem] font-bold uppercase tracking-[0.28em] text-[#A9B9E2] mt-0.5">Services LLP</span>
+              <span className="text-[0.92rem] font-black tracking-[0.38em] text-white uppercase">Ofstride</span>
+              <span className="text-[0.46rem] font-semibold uppercase tracking-[0.34em] text-[#A9B9E2] mt-1">Services LLP</span>
             </span>
           </Link>
-          <nav className="flex gap-6 text-sm font-medium items-center">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <Link to="/" className="text-slate-300 transition hover:text-white">Home</Link>
             <a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="text-slate-300 transition hover:text-white">Services</a>
-            <a href="#roi-calculator" onClick={(e) => handleScrollToId(e, 'roi-calculator')} className="text-slate-300 transition hover:text-white">ROI Tool</a>
-            <Link to="/contact" className="btn-aintric-primary !py-1.5 !px-3.5 !text-[11px]">Get Started</Link>
+            <a href="#analytics" onClick={(e) => handleScrollToId(e, 'analytics')} className="text-slate-300 transition hover:text-white">Impact</a>
+            <a href="#process" onClick={(e) => handleScrollToId(e, 'process')} className="text-slate-300 transition hover:text-white">Process</a>
+            <Link to="/contact" className="btn-aintric-primary !py-2 !px-4 !text-[10px]">Book Call</Link>
           </nav>
         </div>
       </header>
 
-      {/* Main App Output Screen */}
       <main className="flex-grow">{children}</main>
 
-      {/* Structured Dark Footer Grid */}
-      <footer className="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-900 mt-24">
-        <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-          <div className="space-y-4">
-            <div className="flex flex-col">
-              <span className="text-xl font-black tracking-wider text-white italic leading-none">OFSTRIDE</span>
-              <span className="text-[0.65rem] font-bold tracking-[0.25em] text-[#5D7CC1] uppercase mt-0.5">SERVICES LLP</span>
+      <footer className="mt-24 border-t border-white/10 bg-[linear-gradient(180deg,rgba(8,15,28,0.65),rgba(4,8,17,0.92))]">
+        <div className="container-page grid grid-cols-1 gap-12 px-6 py-16 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <div className="flex items-center gap-3">
+              <img src="/assets/logo/logo.png" alt="Ofstride logo" className="h-10 w-10 object-contain" />
+              <div className="flex flex-col leading-none">
+                <span className="text-base font-black tracking-[0.35em] text-white uppercase">Ofstride</span>
+                <span className="text-[0.46rem] font-semibold uppercase tracking-[0.32em] text-[#A9B9E2] mt-1">Services LLP</span>
+              </div>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="mt-6 max-w-xs text-sm leading-relaxed text-slate-400">
               Industrial-grade AI automation architectures and deterministic agent execution frameworks optimized for small business growth.
             </p>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Core Ecosystem</h4>
-            <ul className="space-y-2 text-xs">
-              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">Agent Customization</a></li>
-              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">LLM Fine-Tuning</a></li>
+
+          <div className="md:col-span-2">
+            <h4 className="text-white font-semibold text-[0.62rem] tracking-[0.35em] uppercase mb-4">Resources</h4>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">Services</a></li>
+              <li><a href="#analytics" onClick={(e) => handleScrollToId(e, 'analytics')} className="hover:text-white transition-colors">Impact</a></li>
+              <li><a href="#process" onClick={(e) => handleScrollToId(e, 'process')} className="hover:text-white transition-colors">Process</a></li>
             </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Governance</h4>
-            <p className="text-xs text-slate-500">Secure Data Isolation Protocol</p>
+
+          <div className="md:col-span-2">
+            <h4 className="text-white font-semibold text-[0.62rem] tracking-[0.35em] uppercase mb-4">Solutions</h4>
+            <ul className="space-y-3 text-sm text-slate-400">
+              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">AI Workflow Design</a></li>
+              <li><a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="hover:text-white transition-colors">Automation Governance</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors">Book a Discovery Call</a></li>
+            </ul>
           </div>
-          <div>
-            <h4 className="text-white font-semibold text-xs tracking-wider uppercase mb-4">Location</h4>
-            <p className="text-xs text-slate-400">Indira Nagar, Bengaluru, India</p>
+
+          <div className="md:col-span-4">
+            <h4 className="text-white font-semibold text-[0.62rem] tracking-[0.35em] uppercase mb-4">Location</h4>
+            <p className="text-sm text-slate-400">Indira Nagar, Bengaluru, India</p>
+            <p className="mt-4 text-sm text-slate-400">hello@ofstride.in</p>
           </div>
         </div>
-        <div className="mx-auto max-w-6xl px-6 mt-12 pt-8 border-t border-slate-900 text-center text-xs text-slate-600">
+        <div className="container-page border-t border-white/5 px-6 py-6 text-center text-[0.62rem] uppercase tracking-[0.3em] text-slate-600">
           &copy; {new Date().getFullYear()} Ofstride Services LLP. All Rights Reserved.
         </div>
       </footer>
