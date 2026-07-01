@@ -48,15 +48,23 @@ body {
 }
 
 .container-page {
-  width: min(76rem, calc(100vw - 3.5rem));
+  width: min(74rem, calc(100vw - 3.2rem));
   margin-inline: auto;
+}
+
+section {
+  position: relative;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
 }
 
 .section-label {
   display: inline-block;
-  font-size: 0.62rem;
+  font-size: 0.59rem;
   font-weight: 800;
-  letter-spacing: 0.38em;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
   color: #A9B9E2;
 }
@@ -99,8 +107,8 @@ p, span, li, .text-slate-600, .text-slate-700, .text-gray-600 {
   border: 1px solid var(--border-soft) !important;
   backdrop-filter: blur(18px) !important;
   -webkit-backdrop-filter: blur(18px) !important;
-  border-radius: 1.4rem !important;
-  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.18) !important;
+  border-radius: 1.6rem !important;
+  box-shadow: 0 14px 44px rgba(2, 6, 23, 0.24) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 

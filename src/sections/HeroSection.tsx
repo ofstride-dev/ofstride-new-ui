@@ -1,15 +1,15 @@
 // src/sections/HeroSection.tsx
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden border-b border-white/5 py-24 lg:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(93,124,193,0.38),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(20,184,166,0.2),transparent_22%)]" />
-      <div className="container-page relative grid gap-14 lg:grid-cols-[0.98fr_1.02fr] lg:items-center">
+    <section className="relative overflow-hidden border-b border-white/5 py-24 lg:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(93,124,193,0.42),transparent_26%),radial-gradient(circle_at_bottom_right,rgba(20,184,166,0.24),transparent_22%)]" />
+      <div className="container-page relative grid gap-14 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <div className="max-w-2xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-slate-200 backdrop-blur-xl">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
             Enterprise AI delivery studio
           </div>
-          <h1 className="mt-6 text-4xl font-black tracking-[-0.07em] leading-[0.94] sm:text-5xl lg:text-6xl text-white">
+          <h1 className="mt-6 text-4xl font-black tracking-[-0.07em] leading-[0.92] sm:text-5xl lg:text-6xl text-white">
             AI systems built to <span className="aintric-gradient-text">move the business</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-7 text-slate-400">
@@ -37,7 +37,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="aintric-card p-7 bg-gradient-to-br from-white/[0.02] to-transparent">
+        <div className="aintric-card max-w-[28rem] justify-self-end p-7 bg-gradient-to-br from-white/[0.02] to-transparent">
           <div className="flex items-center justify-between">
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#5D7CC1]">
               Operating blueprint

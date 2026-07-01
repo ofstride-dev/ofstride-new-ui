@@ -21,8 +21,8 @@ export function Home() {
         <PainPointSection />
         
         {/* RECONFIGURED HIGH-CONVERSION CTA MATRIX */}
-        <section className="py-24 border-t border-b border-white/5 bg-gradient-to-b from-transparent to-slate-950/30">
-          <div className="container-page grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+        <section className="py-28 border-t border-b border-white/5 bg-gradient-to-b from-transparent to-slate-950/30">
+          <div className="container-page grid gap-12 lg:grid-cols-[1.02fr_0.98fr] items-center">
             <div className="max-w-xl">
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#5D7CC1]">
                 Start a Conversation

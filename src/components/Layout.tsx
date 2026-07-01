@@ -21,7 +21,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen bg-[#030712]">
       <header className="sticky top-0 z-50 border-b border-white/5 bg-[#050816]/70 backdrop-blur-2xl">
-        <div className="container-page flex items-center justify-between py-4">
+        <div className="container-page flex items-center justify-between py-3.5">
           <Link to="/" className="flex items-center gap-3">
             <img src="/assets/logo/logo.png" alt="Ofstride logo" className="h-10 w-10 object-contain" />
             <span className="flex flex-col leading-none">
