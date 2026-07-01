@@ -34,6 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <a href="#services" onClick={(e) => handleScrollToId(e, 'services')} className="text-slate-300 transition hover:text-white">Services</a>
             <a href="#analytics" onClick={(e) => handleScrollToId(e, 'analytics')} className="text-slate-300 transition hover:text-white">Impact</a>
             <a href="#process" onClick={(e) => handleScrollToId(e, 'process')} className="text-slate-300 transition hover:text-white">Process</a>
+            <a href="#testimonials" onClick={(e) => handleScrollToId(e, 'testimonials')} className="text-slate-300 transition hover:text-white">Stories</a>
             <Link to="/contact" className="btn-aintric-primary !py-2 !px-4 !text-[10px]">Book Call</Link>
           </nav>
         </div>

@@ -30,17 +30,47 @@ body {
   color: var(--text-primary) !important;
   background-color: var(--bg-primary) !important;
   background-image:
-    radial-gradient(circle at 15% 12%, rgba(93, 124, 193, 0.32) 0%, transparent 26%),
-    radial-gradient(circle at 82% 24%, rgba(20, 184, 166, 0.18) 0%, transparent 24%),
-    radial-gradient(circle at 52% 118%, rgba(93, 124, 193, 0.14) 0%, transparent 24%),
-    linear-gradient(180deg, #050816 0%, #08101f 45%, #030712 100%) !important;
+    radial-gradient(circle at 14% 10%, rgba(93, 124, 193, 0.35) 0%, transparent 22%),
+    radial-gradient(circle at 84% 18%, rgba(20, 184, 166, 0.18) 0%, transparent 20%),
+    radial-gradient(circle at 52% 118%, rgba(93, 124, 193, 0.16) 0%, transparent 24%),
+    linear-gradient(180deg, #050816 0%, #08101f 46%, #02050c 100%) !important;
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(93, 124, 193, 0.5);
+  color: #ffffff;
+}
+
 .container-page {
-  width: min(72rem, calc(100vw - 3rem));
+  width: min(76rem, calc(100vw - 3.5rem));
   margin-inline: auto;
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: #A9B9E2;
+}
+
+.section-title {
+  font-size: clamp(2.3rem, 4vw, 3.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.section-copy {
+  font-size: 0.96rem;
+  line-height: 1.8;
+  color: #94a3b8;
 }
 
 /* 2. NEUTRALIZING UTILITY OVERRIDES (Fixes blocky layouts) */

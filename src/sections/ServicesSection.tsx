@@ -21,33 +21,33 @@ export function ServicesSection() {
     <section id="services" className="py-24 border-t border-slate-900/40">
       <div className="container-page">
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#5D7CC1]">
+          <span className="section-label">
             Operational Lifecycle
           </span>
-          <h2 className="text-3xl md:text-4xl font-black text-white aintric-gradient-text mt-3">
-            From Blueprint to Execution, with Precision
+          <h2 className="section-title aintric-gradient-text mt-3">
+            From blueprint to execution, with precision
           </h2>
-          <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-xl">
+          <p className="section-copy mt-4 max-w-2xl">
             We move small businesses and growing companies away from fragmented experiments and toward production-grade systems built for real operations.
           </p>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-3">
           {services.map((service, idx) => (
-            <article key={service.title} className="aintric-card flex flex-col justify-between">
+            <article key={service.title} className="aintric-card flex flex-col justify-between p-6">
               <div>
-                <div className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#00209F]/20 border border-[#00209F]/40 text-xs font-bold text-[#A9B9E2] mb-5">
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#5D7CC1]/25 to-[#14B8A6]/20 border border-white/10 text-sm font-black text-[#A9B9E2] mb-6">
                   0{idx + 1}
                 </div>
-                <h3 className="text-lg font-bold text-white tracking-tight">{service.title}</h3>
-                <p className="mt-3 text-xs text-slate-400 leading-relaxed">{service.description}</p>
+                <h3 className="text-xl font-bold text-white tracking-tight">{service.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-400">{service.description}</p>
               </div>
               
-              <ul className="mt-6 pt-5 border-t border-white/5 space-y-2 text-xs font-medium text-slate-300">
+              <ul className="mt-6 pt-5 border-t border-white/5 space-y-3 text-sm font-medium text-slate-300">
                 {service.points.map((point) => (
-                  <li key={point} className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-[#5D7CC1]" />
-                    {point}
+                  <li key={point} className="flex items-start gap-3">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#5D7CC1] shrink-0" />
+                    <span>{point}</span>
                   </li>
                 ))}
               </ul>
